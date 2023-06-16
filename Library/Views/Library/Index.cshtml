@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "MainPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var UserName = Session["UserName"]?.ToString() ?? "";
+    ViewBag.UserName = UserName;
+}
+
+<div class="container-lg">
+    @*首頁歡迎字樣*@
+    <div class="row flex-column flex-md-row justify-content-center align-items-center" style="height:80vh;">
+        <div class="col-md-5 d-flex justify-content-around align-items-center">
+            <div class="d-block text-center">
+                <i class="far fa-user fa-5x"></i>
+                <h2 class="fw-bold mt-3">@UserName 您好!</h2>
+            </div>
+            <div class="gift-vertical-divider d-none d-md-block"></div>
+        </div>
+        <div class="col-md-6 py-5 py-md-0 d-flex flex-column justify-content-center text-center text-md-start">
+            <h1 class="mb-3">歡迎使用</h1>
+            <h1 class="display-5 fw-bold">
+                <i class="fa-solid fa-book me-3"></i>
+                <span style="letter-spacing:0.25rem;">線上圖書借閱系統</span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+
+}

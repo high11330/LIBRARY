@@ -1,0 +1,88 @@
+﻿@model Library.Models.ViewModel.User_VM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link id="favicon" rel="icon" href="~/images/esun.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/images/esun.ico" type="image/x-icon" />
+    <title>線上圖書借閱系統</title>
+
+    @Styles.Render("~/Content/css")
+</head>
+<body class="bg-green">
+    <div class="container" id="login" v-on:keyup.enter="Login">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card my-5">
+                    <div class="card-body cardbody-color bg-pink p-5">
+                        @using (Ajax.BeginForm("Action", "Login", new AjaxOptions { OnSuccess = "onSuccess" }))
+                        {
+                            <div class="row">
+                                <div class="col-xxl-7 d-none d-xxl-block">
+                                    <img class="w-100" src="~/images/login_img.jpg" />
+                                </div>
+
+                                <div class="col-xxl-5 pt-4">
+                                    <div class="text-center mb-4 fw-bold">
+                                        <h2 class="fw-bold"><span><i class="fa-solid fa-book me-2"></i></span>線上圖書借閱系統</h2>
+                                    </div>
+                                    <hr />
+                                    <div class="mb-4">
+                                        <label for="PhoneNumber"><i class="fa-solid fa-phone me-2"></i>手機號碼</label>
+                                        @Html.TextBoxFor(model => model.PhoneNumber, new { id = "PhoneNumber", @class = "form-control", @placeholder = "請輸入手機號碼", @maxlength = "10", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="Password"><i class="fas fa-key me-2"></i>密碼</label>
+                                        @Html.PasswordFor(model => model.Password, new { id = "Password", @class = "form-control", @placeholder = "請輸入密碼", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <hr />
+                                    <div class="text-center mt-5">
+                                        <button type="submit" name="Action" value="Login" class="btn btn-secondary px-5 w-100">登入</button>
+                                    </div>
+                                    <div class="text-center mt-5">
+                                        <a href="@Url.Action("Register", "Login")" class="link-secondary w-100">好想借書，我要註冊！</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+
+    <script>
+        $(document).ready(function () {
+            //這邊是SessionTimeoutAttribute檢查觸發的
+            let SessionTimeout = "@ViewBag.SessionTimeout";
+            //這邊是倒數計時觸發的
+            let localStorageSessionTimeout = localStorage.getItem("SessionTimeout");
+            if (SessionTimeout == "NoSession" || localStorageSessionTimeout == "NoSession") {
+                localStorage.setItem("SessionTimeout", '');
+                ErrorAlert("超過閒置時間，請重新登入。")
+            }
+        })
+
+        function onSuccess(result) {
+            if (result.error == "")
+                window.location.href = result.url;
+            else {
+                ErrorAlert(result.error);
+            }
+        }
+    </script>
+</body>
+</html>

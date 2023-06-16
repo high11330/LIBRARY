@@ -1,0 +1,100 @@
+﻿@{
+    var UserName = Session["UserName"]?.ToString() ?? "";
+    ViewBag.UserName = UserName;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link id="favicon" rel="icon" href="~/images/esun.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/images/esun.ico" type="image/x-icon" />
+
+    <title>@ViewBag.Title - 線上圖書借閱系統</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <header id="header">
+        <div class="container-fluid py-2 ">
+            <div class="d-flex m-0">
+                <div class="flex-grow-1 d-flex">
+                    <div class="d-xl-none pt-1">
+                        <button id="header-menu-btn" type="button" class="btn btn-light header-menu-btn menu-btn px-1 me-3">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    <a href="@Url.Action("Index","Library")" id="system-title" class="align-self-center">
+                        <span><i class="fa-solid fa-book d-none d-xl-inline-block me-2"></i></span>
+                        線上圖書借閱系統
+                    </a>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                        <span class="d-none d-sm-inline-block">@ViewBag.UserName</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href=@Url.Action("Index","Login")>
+                                <span><i class="fas fa-sign-out-alt"></i></span> Logout
+                            </a>
+                        </li>
+                        <!-- 小螢幕資訊顯示在使用者選單裡 -->
+                        <li class="d-md-none dropdown-divider"></li>
+                        <li class="d-md-none">
+                            <div class="d-sm-none">
+                                <span class="dropdown-item">使用者：@ViewBag.UserName</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <div class="container-fluid" id="main">
+            <div class="row flex-nowrap">
+                <div id="menu" class="scroll-bar col">
+                    <div class="menu-group">
+                        <a href="@Url.Action("Index", "Borrow")" class="list-group-item menu-child">
+                            <span id="A6417P11" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="借書">
+                                借書
+                            </span>
+                        </a>
+                        <a href="@Url.Action("Index", "BorrowRecord")" class="list-group-item menu-child">
+                            <span id="A6417P11" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="借閱紀錄">
+                                借閱紀錄
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="menu-btn" class="d-none d-xl-block col p-0">
+                    <button type="button" class="btn btn-light px-1 menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+
+                <div id="overlay" class="d-none"></div>
+
+                <div class="col pe-0 ps-0 ps-xl-2" id="content-area">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("script", false)
+</body>
+</html>
