@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BookRecordController.cs" />
     <Compile Include="Controllers\BorrowBookController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RetrunBookController.cs" />
@@ -279,6 +280,7 @@
     <Content Include="Views\Login\MainPage.cshtml" />
     <Content Include="Views\BorrowBook\Index.cshtml" />
     <Content Include="Views\RetrunBook\Index.cshtml" />
+    <Content Include="Views\BookRecord\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

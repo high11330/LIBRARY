@@ -13,6 +13,7 @@ namespace Library.Controllers
         #region 還書畫面
         public ActionResult Index()
         {
+            //僅能看見自己的紀錄且書本出借中
             BorrowBook_VM Model = new BorrowBook_VM();
             Model.Book = new Book_VM();
             Model.BookList = db.Database.SqlQuery<Book_VM>("EXEC GetBorrowingRecord @UserId, @Status",
