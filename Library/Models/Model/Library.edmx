@@ -53,6 +53,10 @@
         <Function Name="GetBookList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ISBN" Type="char" Mode="In" />
         </Function>
+        <Function Name="GetBorrowingRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PhoneNumber" Type="char" Mode="In" />
           <Parameter Name="Password" Type="char" Mode="In" />
@@ -61,6 +65,10 @@
           <Parameter Name="PhoneNumber" Type="char" Mode="In" />
           <Parameter Name="Password" Type="char" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="RetrunBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="InventoryId" Type="int" Mode="In" />
         </Function>
         <Function Name="UpdateUserLastLoginTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
@@ -145,6 +153,14 @@
             <Parameter Name="UserId" Mode="In" Type="Int32" />
             <Parameter Name="InventoryId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetBorrowingRecord" ReturnType="Collection(LibraryModel.GetBorrowingRecord_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RetrunBook">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="InventoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetUser_Result">
           <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -161,6 +177,16 @@
           <Property Type="String" Name="Introduction" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="InventoryId" Nullable="false" />
           <Property Type="String" Name="ISBN1" Nullable="false" MaxLength="13" />
+          <Property Type="DateTime" Name="StoreTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="GetBorrowingRecord_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="InventoryId" Nullable="false" />
+          <Property Type="DateTime" Name="BorrowingTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ReturnTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="InventoryId1" Nullable="false" />
+          <Property Type="String" Name="ISBN" Nullable="false" MaxLength="13" />
           <Property Type="DateTime" Name="StoreTime" Nullable="false" Precision="23" />
           <Property Type="String" Name="Status" Nullable="false" MaxLength="30" />
         </ComplexType>
@@ -241,6 +267,21 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="BorrowBook" FunctionName="LibraryModel.Store.BorrowBook" />
+          <FunctionImportMapping FunctionImportName="GetBorrowingRecord" FunctionName="LibraryModel.Store.GetBorrowingRecord">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryModel.GetBorrowingRecord_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="BorrowingTime" ColumnName="BorrowingTime" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="InventoryId1" ColumnName="InventoryId1" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="StoreTime" ColumnName="StoreTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RetrunBook" FunctionName="LibraryModel.Store.RetrunBook" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

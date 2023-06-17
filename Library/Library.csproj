@@ -132,6 +132,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BorrowBookController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RetrunBookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +143,9 @@
       <DependentUpon>Library.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model\GetBookList_Result.cs">
+      <DependentUpon>Library.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\GetBorrowingRecord_Result.cs">
       <DependentUpon>Library.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model\GetUser_Result.cs">
@@ -274,6 +278,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\MainPage.cshtml" />
     <Content Include="Views\BorrowBook\Index.cshtml" />
+    <Content Include="Views\RetrunBook\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

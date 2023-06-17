@@ -11,5 +11,7 @@ namespace Library.Models.ViewModel
         public string Status { get; set; }
         public int InventoryId { get; set; }
         public DateTime StoreTime { get; set; }
+        public DateTime BorrowingTime { get; set; }
+        public DateTime? ReturnTime { get; set; }
     }
 }

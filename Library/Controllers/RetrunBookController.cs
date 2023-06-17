@@ -8,27 +8,28 @@ using System.Web.Mvc;
 
 namespace Library.Controllers
 {
-    public class BorrowBookController : BaseController
+    public class RetrunBookController : BaseController
     {
-        #region 借書畫面
+        #region 還書畫面
         public ActionResult Index()
         {
             BorrowBook_VM Model = new BorrowBook_VM();
             Model.Book = new Book_VM();
-            Model.BookList = db.Database.SqlQuery<Book_VM>("EXEC GetBookList @ISBN",
-                                                           new SqlParameter("@ISBN", DBNull.Value)).ToList();
+            Model.BookList = db.Database.SqlQuery<Book_VM>("EXEC GetBorrowingRecord @UserId, @Status",
+                                                           new SqlParameter("@UserId", UserId),
+                                                           new SqlParameter("@Status", "出借中")).ToList();
             return View(Model);
         }
         #endregion
 
-        #region 執行借書
+        #region 執行還書
         [HttpPost]
-        public JsonResult Borrow(string inventoryid)
+        public JsonResult Retrun(string inventoryid)
         {
             string error = "";
             try
             {
-                db.Database.ExecuteSqlCommand("EXEC BorrowBook @UserId, @InventoryId",
+                db.Database.ExecuteSqlCommand("EXEC RetrunBook @UserId, @InventoryId",
                                                new SqlParameter("@UserId", UserId),
                                                new SqlParameter("@InventoryId", inventoryid));
                 return Json(new { error });

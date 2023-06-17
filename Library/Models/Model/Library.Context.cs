@@ -92,5 +92,31 @@ namespace Library.Models.Model
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BorrowBook", userIdParameter, inventoryIdParameter);
         }
+    
+        public virtual ObjectResult<GetBorrowingRecord_Result> GetBorrowingRecord(Nullable<int> userId, string status)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBorrowingRecord_Result>("GetBorrowingRecord", userIdParameter, statusParameter);
+        }
+    
+        public virtual int RetrunBook(Nullable<int> userId, Nullable<int> inventoryId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var inventoryIdParameter = inventoryId.HasValue ?
+                new ObjectParameter("InventoryId", inventoryId) :
+                new ObjectParameter("InventoryId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RetrunBook", userIdParameter, inventoryIdParameter);
+        }
     }
 }

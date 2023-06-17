@@ -1,0 +1,22 @@
+INSERT INTO BOOK (ISBN, Name, Author, Introduction)
+VALUES
+('9780060935467', 'To Kill a Mockingbird', 'Harper Lee', 'To Kill a Mockingbird 是一部探索種族不平等和不公正的經典小說，背景設定在 1930 年代的美國南方。'),
+('9780064404990', 'The Chronicles of Narnia', 'C.S. Lewis', 'The Chronicles of Narnia 是一系列奇幻小說，帶領讀者進入充滿著說話的動物、神話生物和史詩般冒險的魔法世界 Narnia。'),
+('9780134685991', 'Designing Data-Intensive Applications', 'Martin Kleppmann', 'Designing Data-Intensive Applications 探索設計和構建可擴展可靠的資料密集型應用程式的原則和技巧。'),
+('9780141439518', 'Pride and Prejudice', 'Jane Austen', 'Pride and Prejudice 是一部浪漫小說，講述了伊莉莎白·班內特與達西先生在 19 世紀英國社會中複雜的關係。'),
+('9780262033848', 'Introduction to Algorithms', 'Thomas H. Cormen', 'Introduction to Algorithms 是一本關於算法和資料結構的經典教材，全面介紹了計算機科學領域的基礎知識。'),
+('9780307474278', 'The Da Vinci Code', 'Dan Brown', 'The Da Vinci Code 是一部融合藝術、歷史和陰謀理論的驚悚小說，一位象徵學家和密碼學家揭開了一個隱藏的秘密，可能動搖基督教的基石。'),
+('9780316769488', 'The Catcher in the Rye', 'J.D. Salinger', 'The Catcher in the Rye 是一部成長小說，講述了霍爾登·考菲爾德這個對成人世界的虛偽感到失望的青少年的故事。'),
+('9780321714114', 'Clean Code', 'Robert C. Martin', 'Clean Code 是一本關於撰寫乾淨、易於維護和可讀性高的程式碼的指南，著重軟體開發的最佳實踐和原則。'),
+('9780441172719', 'Dune', 'Frank Herbert', 'Dune 是一部設定在遙遠未來的科幻小說，講述了保羅·亞特里德在政治陰謀、宗教和沙漠行星 Arrakis 上的冒險故事。'),
+('9780451524935', '1984', 'George Orwell', '1984 是一部描繪一個由「老大哥」統治的極權社會的反烏托邦小說，在這個社會中個人主義和自由受到壓制。'),
+('9780544003415', 'The Lord of the Rings', 'J.R.R. Tolkien', 'The Lord of the Rings 是一部奇幻史詩，故事發生在虛構世界 Middle-earth，講述了一群角色為了摧毀一枚至尊戒指而展開的旅程。'),
+('9780590353427', 'Harry Potter and the Sorcerer''s Stone', 'J.K. Rowling', 'Harry Potter and the Sorcerer''s Stone 是哈利波特系列中的第一本書，向讀者介紹了霍格華茲魔法學校的神奇世界。'),
+('9780596517748', 'Head First Design Patterns', 'Eric Freeman, E. Robson', 'Head First Design Patterns 以互動和引人入勝的方式介紹設計模式，提供實用的例子和場景。'),
+('9780743273565', 'The Great Gatsby', 'F. Scott Fitzgerald', 'The Great Gatsby 是一部經典小說，背景設定在 1920 年代的爵士時代，探索財富、愛情和美國夢的主題。'),
+('9781449359362', 'The Pragmatic Programmer', 'David Thomas, Andrew Hunt', 'The Pragmatic Programmer 提供實用的建議和技巧，幫助軟體開發人員在他們的工作中更加高效和有效。'),
+('9781449374648', 'JavaScript: The Good Parts', 'Douglas Crockford', 'JavaScript: The Good Parts 著重介紹 JavaScript 語言的核心特性，強調良好的實踐方法，避免陷阱。'),
+('9781491950357', 'Learning Python', 'Mark Lutz', 'Learning Python 是一本針對初學者的 Python 程式語言入門書，涵蓋基本語法、資料類型和程式設計概念。'),
+('9781491978917', 'Hands-On Machine Learning', 'Aurélien Géron', 'Hands-On Machine Learning 提供了一種實踐機器學習的方法，使用流行的庫如 Scikit-Learn、Keras 和 TensorFlow，提供實際的例子和項目。'),
+('9781593275846', 'Eloquent JavaScript', 'Marijn Haverbeke', 'Eloquent JavaScript 是一本全面介紹 JavaScript 程式設計的指南，涵蓋語言語法、概念和實際例子。'),
+('9781788995573', 'Mastering React', 'Adam Horton, Ryan Vice', 'Mastering React 是一本全面指南，教你如何使用 React JavaScript 庫來構建 Web 應用程式，涵蓋高級主題和最佳實踐。');

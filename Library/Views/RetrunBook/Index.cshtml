@@ -1,11 +1,11 @@
 ﻿@model Library.Models.ViewModel.BorrowBook_VM
 @{
-    ViewBag.Title = "借書";
+    ViewBag.Title = "還書";
 }
 
 <div class="content-area-header">
     <div class="content-title">
-        借書
+        還書
     </div>
 </div>
 
@@ -18,8 +18,7 @@
                     <th class="no-sort"></th>
                     <th>國際標準書號</th>
                     <th>書名</th>
-                    <th>書籍入庫(購買)日期時間</th>
-                    <th>書籍狀態</th>
+                    <th>借出日期時間</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,18 +26,10 @@
                 {
                     <tr class="dt-body-center">
                         <td><button type="button" class="btnDetail btn btn-outline-success btn-sm">詳細資料</button></td>
-                        @if(Model.BookList[i].Status == "在庫")
-                        {
-                            <td><button type="button" class="btnBorrow btn btn-outline-success btn-sm" data-inventoryid="@Html.DisplayFor(m => Model.BookList[i].InventoryId)">借書</button></td>
-                        }
-                        else
-                        {
-                                <td>不可借出</td>
-                        }
+                        <td><button type="button" class="btnBorrow btn btn-outline-success btn-sm" data-inventoryid="@Html.DisplayFor(m => Model.BookList[i].InventoryId)">還書</button></td>
                         <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].ISBN)</td>
                         <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].Name)</td>
-                        <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].StoreTime)</td>
-                        <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].Status)</td>
+                        <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].BorrowingTime)</td>
                     </tr>
                 }
             </tbody>
@@ -55,10 +46,10 @@
             $(".btnBorrow").click(function (e) {
                 let inventoryid = $(this).data('inventoryid');
                 console.log(inventoryid)
-                AuthPostAlert("@Url.Action("Borrow", "BorrowBook")", { inventoryid }, "確定借書?").then((resolve) => {
+                AuthPostAlert("@Url.Action("Retrun", "RetrunBook")", { inventoryid }, "確定還書?").then((resolve) => {
                         let data = resolve.data;
                         if (data.error == "") {
-                            SuccessAlert("借書成功", "").then(() => {
+                            SuccessAlert("還書成功", "").then(() => {
                                 location.reload();  // 重新整理頁面
                             });
                         }

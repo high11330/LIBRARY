@@ -72,5 +72,20 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="BorrowBook" FunctionName="LibraryModel.Store.BorrowBook" />
+    <FunctionImportMapping FunctionImportName="GetBorrowingRecord" FunctionName="LibraryModel.Store.GetBorrowingRecord">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryModel.GetBorrowingRecord_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+          <ScalarProperty Name="BorrowingTime" ColumnName="BorrowingTime" />
+          <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+          <ScalarProperty Name="InventoryId1" ColumnName="InventoryId1" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="StoreTime" ColumnName="StoreTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RetrunBook" FunctionName="LibraryModel.Store.RetrunBook" />
   </EntityContainerMapping>
 </Mapping>

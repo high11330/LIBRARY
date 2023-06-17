@@ -48,6 +48,10 @@
   <Function Name="GetBookList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ISBN" Type="char" Mode="In" />
   </Function>
+  <Function Name="GetBorrowingRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PhoneNumber" Type="char" Mode="In" />
     <Parameter Name="Password" Type="char" Mode="In" />
@@ -56,6 +60,10 @@
     <Parameter Name="PhoneNumber" Type="char" Mode="In" />
     <Parameter Name="Password" Type="char" Mode="In" />
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="RetrunBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="InventoryId" Type="int" Mode="In" />
   </Function>
   <Function Name="UpdateUserLastLoginTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserId" Type="int" Mode="In" />
