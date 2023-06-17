@@ -56,6 +56,13 @@
     <FunctionImport Name="UpdateUserLastLoginTime">
       <Parameter Name="UserId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GetBookList" ReturnType="Collection(LibraryModel.GetBookList_Result)">
+      <Parameter Name="ISBN" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BorrowBook">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="InventoryId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetUser_Result">
     <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -64,5 +71,15 @@
     <Property Type="String" Name="UserName" Nullable="false" MaxLength="20" />
     <Property Type="DateTime" Name="RegistrationTime" Nullable="true" Precision="23" />
     <Property Type="DateTime" Name="LastLoginTime" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetBookList_Result">
+    <Property Type="String" Name="ISBN" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Author" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Introduction" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="InventoryId" Nullable="false" />
+    <Property Type="String" Name="ISBN1" Nullable="false" MaxLength="13" />
+    <Property Type="DateTime" Name="StoreTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="30" />
   </ComplexType>
 </Schema>

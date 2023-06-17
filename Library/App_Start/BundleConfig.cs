@@ -29,12 +29,15 @@ namespace Library
                                    "~/Scripts/bootstrap.bundle.min.js",
                                    "~/Scripts/sweetalert2.all.min.js",
                                    "~/Scripts/all.min.js",
+                                   "~/Scripts/axios.js",
+                                   "~/Scripts/datatables.min.js",
                                    "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                                         "~/Content/bootstrap.css",
                                         "~/Content/sweetalert2.min.css",
                                         "~/Content/all.min.css",
+                                        "~/Content/datatables.min.css",
                                         "~/Content/site.css"));
         }
     }

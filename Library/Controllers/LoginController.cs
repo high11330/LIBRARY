@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,6 +48,7 @@ namespace Library.Controllers
             {
                 if (Model.Action == "Login")
                 {
+                    #region 登入
                     if (String.IsNullOrEmpty(Model.PhoneNumber?.Trim()) || 
                         String.IsNullOrEmpty(Model.Password?.Trim()))
                     {
@@ -58,6 +60,8 @@ namespace Library.Controllers
                                                     new SqlParameter("@PhoneNumber", Model.PhoneNumber),
                                                     new SqlParameter("@Password", Encrypt(Model.Password))).ToList();
 
+                        //使用者帳號密碼輸入正確記入Session
+                        //更新上次登入時間
                         if (User.Any())
                         {
                             int UserId = User.FirstOrDefault()?.UserId ?? 0;
@@ -65,23 +69,28 @@ namespace Library.Controllers
                             Session["UserName"] = User.FirstOrDefault()?.UserName;
                             db.Database.ExecuteSqlCommand("EXEC UpdateUserLastLoginTime @UserId ",
                                                            new SqlParameter("@UserId", UserId));
-                            return Json(new { url = Url.Action("Index", "Library"), error });
+                            return Json(new { url = Url.Action("MainPage", "Login"), error });
                         }
                         else
                         {
                             error = "帳號或密碼錯誤";
                         }
                     }
-                    
+                    #endregion
                 }
-                else //註冊
+                else
                 {
+                    #region 註冊
                     IEnumerable<User_VM> User = db.Database.SqlQuery<User_VM>("EXEC GetUser @PhoneNumber, @Password",
                                                 new SqlParameter("@PhoneNumber", Model.PhoneNumber),
                                                 new SqlParameter("@Password", DBNull.Value)).ToList();
                     if (User.Count() > 0)
                     {
                         error = "此手機號碼已註冊過";
+                    }
+                    else if (!ValidatePhoneNumber(Model.PhoneNumber))
+                    {
+                        error = "手機號碼格式錯誤";
                     }
                     else if (Model.Password != Model.PasswordConfirm)
                     {
@@ -95,6 +104,7 @@ namespace Library.Controllers
                                                        new SqlParameter("@UserName", Model.UserName));
                         return Json(new { url = Url.Action("Index", "Login"), error });
                     }
+                    #endregion
                 }
             }
             catch (Exception ex)
@@ -106,7 +116,12 @@ namespace Library.Controllers
         }
         #endregion
 
-
+        #region 登入後首頁
+        public ActionResult MainPage()
+        {
+            return View();
+        }
+        #endregion
 
         #region 密碼加密
         public static string Encrypt(string input)
@@ -187,6 +202,17 @@ namespace Library.Controllers
             string decryptedString = UTF8Encoding.UTF8.GetString(decryptBytes, 0, decryptBytes.Length);
 
             return decryptedString;
+        }
+        #endregion
+
+        #region 驗證手機號碼格式
+        public static bool ValidatePhoneNumber(string phoneNumber)
+        {
+            if (phoneNumber?.Length != 10) return false;            
+            string pattern = @"^09[0-9]{8}$";
+            Regex regex = new Regex(pattern);
+            Match match = regex.Match(phoneNumber);
+            return match.Success;
         }
         #endregion
     }

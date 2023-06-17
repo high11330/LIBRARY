@@ -13,7 +13,6 @@ namespace Library.Controllers
         public LibraryEntities db = new LibraryEntities();
         public string UserId => Session["UserId"] == null ? "" : Session["UserId"].ToString();
         public string UserName => Session["UserName"] == null ? "" : Session["UserName"].ToString();
-
     }
 
     #region SessionTimeout相關

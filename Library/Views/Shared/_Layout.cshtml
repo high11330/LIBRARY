@@ -1,10 +1,10 @@
 ﻿@{
     var UserName = Session["UserName"]?.ToString() ?? "";
-    ViewBag.UserName = UserName;
+    ViewBag.UserName = HttpUtility.HtmlEncode(UserName);
 }
 
-
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,7 +29,7 @@
                             <span></span>
                         </button>
                     </div>
-                    <a href="@Url.Action("Index","Library")" id="system-title" class="align-self-center">
+                    <a href="@Url.Action("MainPage","Login")" id="system-title" class="align-self-center">
                         <span><i class="fa-solid fa-book d-none d-xl-inline-block me-2"></i></span>
                         線上圖書借閱系統
                     </a>
@@ -38,7 +38,7 @@
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle" type="button" id="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="icon"><i class="fas fa-user"></i></span>
-                        <span class="d-none d-sm-inline-block">@ViewBag.UserName</span>
+                        <span class="d-none d-sm-inline-block">@Html.Raw(@ViewBag.UserName)</span>
                     </button>
                     <ul class="dropdown-menu">
                         <li>
@@ -50,7 +50,7 @@
                         <li class="d-md-none dropdown-divider"></li>
                         <li class="d-md-none">
                             <div class="d-sm-none">
-                                <span class="dropdown-item">使用者：@ViewBag.UserName</span>
+                                <span class="dropdown-item">使用者：@Html.Raw(@ViewBag.UserName)</span>
                             </div>
                         </li>
                     </ul>
@@ -64,14 +64,19 @@
             <div class="row flex-nowrap">
                 <div id="menu" class="scroll-bar col">
                     <div class="menu-group">
-                        <a href="@Url.Action("Index", "Borrow")" class="list-group-item menu-child">
-                            <span id="A6417P11" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="借書">
-                                借書
+                        <a href="@Url.Action("Index", "BorrowBook")" class="list-group-item menu-child">
+                            <span id="BorrowBook" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="借書">
+                                ● 借書
                             </span>
                         </a>
-                        <a href="@Url.Action("Index", "BorrowRecord")" class="list-group-item menu-child">
-                            <span id="A6417P11" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="借閱紀錄">
-                                借閱紀錄
+                        <a href="@Url.Action("Index", "RetrunBook")" class="list-group-item menu-child">
+                            <span id="RetrunBook" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="還書">
+                                ● 還書
+                            </span>
+                        </a>
+                        <a href="@Url.Action("Index", "BookRecord")" class="list-group-item menu-child">
+                            <span id="BorrowRecord" class="menu-item" data-bs-toggle="tooltip" data-placement="right" title="借閱紀錄">
+                                ● 借閱紀錄
                             </span>
                         </a>
                     </div>

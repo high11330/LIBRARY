@@ -5,7 +5,7 @@
 body {
     font-family: 'Microsoft JhengHei', 'Open Sans', sans-serif;
     font-size: 1rem;
-    background-color: #CCDBEC; /*#00A19C  #FFF6F7*/
+    background-color: #FFF6F7; /*#00A19C  #FFF6F7*/
 }
 
 a {
@@ -120,7 +120,7 @@ margin: 3px auto;
 }
 
 #menu a {
-    color: #00477d;
+    color: #005552;
 }
 
 #menu a:hover,
@@ -137,18 +137,18 @@ margin: 3px auto;
 
 .menu-child {
     font-size: 16px;
-    padding: 0px 0px 8px 10px;
+    padding: 10px;
     border: none;
 }
 
 .menu-title:hover,
 .menu-item:hover {
-    background: #CCDBEC;
+    background: #FFF6F7;
     border-radius: 5px;
 }
 
 .menu-item.active {
-    background: #CCDBEC;
+    background: #FFF6F7;
     border-radius: 5px;
     color: black;
     font-weight: bold;
@@ -160,12 +160,13 @@ margin: 3px auto;
 
 #content-area {
     height: calc(100vh - 70px);
+    padding: 0 !important
 }
 
 .content-area-header {
     font-size: 16px;
     min-height: 50px;
-    background: #f2f5fa;
+    background: #e4f5e9;
     padding: 15px 20px;
     font-weight: bold;
 }
@@ -173,8 +174,8 @@ margin: 3px auto;
 .content-area-box {
     background: #fff;
     padding: 20px;
-    min-height: calc(100vh - 100px);
-    max-height: calc(100vh - 100px);
+    min-height: calc(100vh - 110px);
+    max-height: calc(100vh - 110px);
     overflow-y: auto;
 }
 
@@ -193,12 +194,12 @@ margin: 3px auto;
     }
 
     #main {
-        margin-top: 50px;
+        margin-top: 55px;
     }
 
     .content-area-box {
-        min-height: calc(100vh - 100px);
-        max-height: calc(100vh - 100px);
+        min-height: calc(100vh - 110px);
+        max-height: calc(100vh - 110px);
     }
 
     .loading-area {

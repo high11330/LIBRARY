@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var UserName = Session["UserName"]?.ToString() ?? "";
-    ViewBag.UserName = UserName;
+    ViewBag.UserName = HttpUtility.HtmlEncode(UserName);
 }
 
 <div class="container-lg">
@@ -12,7 +12,7 @@
         <div class="col-md-5 d-flex justify-content-around align-items-center">
             <div class="d-block text-center">
                 <i class="far fa-user fa-5x"></i>
-                <h2 class="fw-bold mt-3">@UserName 您好!</h2>
+                <h2 class="fw-bold mt-3">@Html.Raw(ViewBag.UserName) 您好!</h2>
             </div>
             <div class="gift-vertical-divider d-none d-md-block"></div>
         </div>
@@ -25,8 +25,3 @@
         </div>
     </div>
 </div>
-
-
-@section script{
-
-}

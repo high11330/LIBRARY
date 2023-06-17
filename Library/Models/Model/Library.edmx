@@ -46,6 +46,13 @@
           <Property Name="RegistrationTime" Type="datetime" />
           <Property Name="LastLoginTime" Type="datetime" />
         </EntityType>
+        <Function Name="BorrowBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="InventoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetBookList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ISBN" Type="char" Mode="In" />
+        </Function>
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PhoneNumber" Type="char" Mode="In" />
           <Parameter Name="Password" Type="char" Mode="In" />
@@ -131,6 +138,13 @@
           <FunctionImport Name="UpdateUserLastLoginTime">
           <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetBookList" ReturnType="Collection(LibraryModel.GetBookList_Result)">
+          <Parameter Name="ISBN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BorrowBook">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="InventoryId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetUser_Result">
           <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -139,6 +153,16 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="20" />
           <Property Type="DateTime" Name="RegistrationTime" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="LastLoginTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetBookList_Result">
+          <Property Type="String" Name="ISBN" Nullable="false" MaxLength="13" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Introduction" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="InventoryId" Nullable="false" />
+          <Property Type="String" Name="ISBN1" Nullable="false" MaxLength="13" />
+          <Property Type="DateTime" Name="StoreTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -202,6 +226,21 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateUserLastLoginTime" FunctionName="LibraryModel.Store.UpdateUserLastLoginTime" />
+          <FunctionImportMapping FunctionImportName="GetBookList" FunctionName="LibraryModel.Store.GetBookList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryModel.GetBookList_Result">
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="ISBN1" ColumnName="ISBN1" />
+                <ScalarProperty Name="StoreTime" ColumnName="StoreTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BorrowBook" FunctionName="LibraryModel.Store.BorrowBook" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

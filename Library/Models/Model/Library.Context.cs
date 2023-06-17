@@ -70,5 +70,27 @@ namespace Library.Models.Model
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateUserLastLoginTime", userIdParameter);
         }
+    
+        public virtual ObjectResult<GetBookList_Result> GetBookList(string iSBN)
+        {
+            var iSBNParameter = iSBN != null ?
+                new ObjectParameter("ISBN", iSBN) :
+                new ObjectParameter("ISBN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBookList_Result>("GetBookList", iSBNParameter);
+        }
+    
+        public virtual int BorrowBook(Nullable<int> userId, Nullable<int> inventoryId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var inventoryIdParameter = inventoryId.HasValue ?
+                new ObjectParameter("InventoryId", inventoryId) :
+                new ObjectParameter("InventoryId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BorrowBook", userIdParameter, inventoryIdParameter);
+        }
     }
 }

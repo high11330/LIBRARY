@@ -1,0 +1,69 @@
+﻿@model Library.Models.ViewModel.BorrowBook_VM
+@{
+    ViewBag.Title = "借書";
+}
+
+<div class="content-area-header">
+    <div class="content-title">
+        借書
+    </div>
+</div>
+
+<div class="content-area-box">
+    <div class="result-area mb-2">
+        <table class="table table-light table-striped table-hover align-middle w-100" id="Books" data-height="400px" data-loadingoff="true">
+            <thead>
+                <tr>
+                    <th class="no-sort"></th>
+                    <th class="no-sort"></th>
+                    <th>國際標準書號</th>
+                    <th>書籍入庫(購買)日期時間</th>
+                    <th>書籍狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.BookList.Count; i++)
+                {
+                    <tr class="dt-body-center">
+                        <td><button type="button" class="btnDetail btn btn-outline-success btn-sm">詳細資料</button></td>
+                        @if(Model.BookList[i].Status == "在庫")
+                        {
+                            <td><button type="button" class="btnBorrow btn btn-outline-success btn-sm" data-inventoryid="@Html.DisplayFor(m => Model.BookList[i].InventoryId)">借書</button></td>
+                        }
+                        else
+                        {
+                                <td>不可借出</td>
+                        }
+                        <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].ISBN)</td>
+                        <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].StoreTime)</td>
+                        <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].Status)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            InitDataTables("Books");
+
+            $(".btnBorrow").click(function (e) {
+                let inventoryid = $(this).data('inventoryid');
+                console.log(inventoryid)
+                AuthPostAlert("@Url.Action("Borrow", "BorrowBook")", { inventoryid }, "確定借書?").then((resolve) => {
+                        let data = resolve.data;
+                        if (data.error == "") {
+                            SuccessAlert("借書成功", "").then(() => {
+                                location.reload();  // 重新整理頁面
+                            });
+                        }
+                }, (reject) => {
+                    console.log(reject);
+                });
+            });
+        })
+    </script>
+}

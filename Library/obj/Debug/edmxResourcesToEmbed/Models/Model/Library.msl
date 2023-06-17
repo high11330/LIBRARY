@@ -57,5 +57,20 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateUserLastLoginTime" FunctionName="LibraryModel.Store.UpdateUserLastLoginTime" />
+    <FunctionImportMapping FunctionImportName="GetBookList" FunctionName="LibraryModel.Store.GetBookList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryModel.GetBookList_Result">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+          <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+          <ScalarProperty Name="ISBN1" ColumnName="ISBN1" />
+          <ScalarProperty Name="StoreTime" ColumnName="StoreTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BorrowBook" FunctionName="LibraryModel.Store.BorrowBook" />
   </EntityContainerMapping>
 </Mapping>
