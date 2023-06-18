@@ -25,8 +25,8 @@
                 @for (int i = 0; i < Model.BookList.Count; i++)
                 {
                     <tr class="dt-body-center">
-                        <td><button type="button" class="btnDetail btn btn-outline-success btn-sm">詳細資料</button></td>
-                        <td><button type="button" class="btnReturn btn btn-outline-success btn-sm" data-inventoryid="@Html.DisplayFor(m => Model.BookList[i].InventoryId)">還書</button></td>
+                        <td><button type="button" class="btnDetail btn btn-secondary btn-sm" data-isbn="@Html.DisplayFor(m => Model.BookList[i].ISBN)">詳細資料</button></td>
+                        <td><button type="button" class="btnReturn btn btn-success btn-sm" data-inventoryid="@Html.DisplayFor(m => Model.BookList[i].InventoryId)">還書</button></td>
                         <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].ISBN)</td>
                         <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].Name)</td>
                         <td class="dt-body-center">@Html.DisplayFor(m => Model.BookList[i].BorrowingTime)</td>
@@ -56,6 +56,14 @@
                 }, (reject) => {
                     console.log(reject);
                 });
+            });
+
+            $(".btnDetail").click(function (e) {
+                let isbn = $(this).data('isbn');
+                $("#forload").load("@Url.Action("BookDetail", "Shared")?isbn=" + isbn,
+                    function (data) {
+                        $('#BookDetail-modal').modal('show');
+                    });
             });
         })
     </script>

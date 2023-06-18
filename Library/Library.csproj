@@ -134,6 +134,7 @@
     <Compile Include="Controllers\BorrowBookController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RetrunBookController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -281,6 +282,7 @@
     <Content Include="Views\BorrowBook\Index.cshtml" />
     <Content Include="Views\RetrunBook\Index.cshtml" />
     <Content Include="Views\BookRecord\Index.cshtml" />
+    <Content Include="Views\Shared\BookDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,73 @@
+﻿@model Library.Models.ViewModel.Book_VM
+@{
+
+}
+
+<div id="BookDetail-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="BookDetail-modal-title" class="modal-title">詳細資料</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="BookDetail-modal-body">
+                <div class="row mb-2">
+                    <div class="col-12 col-xl-4 fw-bolder">
+                        國際標準書號：
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        @Html.DisplayFor(m => Model.ISBN)
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-2">
+                    <div class="col-12 col-xl-4 fw-bolder">
+                        書名：
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        @Html.DisplayFor(m => Model.Name)
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-2">
+                    <div class="col-12 col-xl-4 fw-bolder">
+                        作者：
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        @Html.DisplayFor(m => Model.Author)
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-2">
+                    <div class="col-12 col-xl-4 fw-bolder">
+                        書籍入庫(購買)日期時間：
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        @Html.DisplayFor(m => Model.StoreTime)
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-2">
+                    <div class="col-12 col-xl-4 fw-bolder">
+                        狀態：
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        @Html.DisplayFor(m => Model.Status)
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-2">
+                    <div class="col-12 col-xl-4 fw-bolder">
+                        書籍內容簡介：
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        @Html.DisplayFor(m => Model.Introduction)
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="BookDetail-modal-dismiss" type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>

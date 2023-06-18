@@ -40,7 +40,7 @@ function resize_adjust() {
             if ($('#menu').hasClass('active')) {
                 $("#content-area").css("maxWidth", (window.innerWidth - 30) + "px");
             } else {
-                $("#content-area").css("maxWidth", (window.innerWidth - 280) + "px");
+                $("#content-area").css("maxWidth", (window.innerWidth - 283) + "px");
             }
             //$.fn.dataTable
             //    .tables({ visible: true, api: true })
